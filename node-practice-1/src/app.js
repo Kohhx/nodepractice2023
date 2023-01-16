@@ -1,11 +1,17 @@
+// Require Core Modules
+const path = require("path");
+
+//Require NPM Modules
 const express = require("express");
 
+// Initlaize App
 const app = express();
 
+//Servce public folder (index)
+const publicDirectoryPath = path.join(__dirname, "../public");
+app.use(express.static(publicDirectoryPath));
+
 // Create routes
-app.get("/", (req, res) => {
-  res.send("Hello express");
-});
 
 app.get("/help", (req, res) => {
   res.send([
@@ -20,9 +26,7 @@ app.get("/help", (req, res) => {
   ]);
 });
 
-app.get("/about", (req, res) => {
-  res.send("<h1>About</h1>"); // Send a HTML string
-});
+
 
 app.get("/weather", (req, res) => {
   res.send({
