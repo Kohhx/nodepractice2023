@@ -7,13 +7,22 @@
     <title>Node Web Server</title>
     <!-- Link is with relative to index.html file -->
     <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/app.js"></script>
+    <script src="./js/app.js" defer></script>
   </head>
   <body>
     {{!-- Partial insertion --}}
     <div class="main-content">
       {{>header}}
-      <p>Get your weather here!</p>
+      <p>Search Location</p>
+      <form class="form-submit" action="/">
+        <input class="input-location" type="text">
+        <button type="submit">Search</button>
+      </form>
+      <div class="output">
+        <p class="Place"></p>
+        <p class="Lat"></p>
+        <p class="Lng"></p>
+      </div>
     </div>
 
     {{>footer}}
