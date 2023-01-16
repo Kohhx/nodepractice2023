@@ -3,7 +3,7 @@ const path = require("path");
 
 //Require NPM Modules
 const express = require("express");
-const  hbs  = require('hbs');
+const  hbs = require('hbs');
 
 // Initlaize App
 const app = express();
@@ -28,7 +28,7 @@ app.use(express.static(publicDirectoryPath));
 // Create routes ===============================================================
 app.get("/", (req, res) => {
   res.render("index", {
-    title: "Weather",
+    title: "Main",
     name: "Kohhx",
   });
 });
@@ -42,9 +42,12 @@ app.get("/about", (req, res) => {
 
 app.get("/help", (req, res) => {
   res.render("help", {
+    title: "Help",
+    name: "Kohhx",
     message: "Help....",
   });
 });
+
 
 app.get("/weather", (req, res) => {
   res.send({
@@ -52,6 +55,23 @@ app.get("/weather", (req, res) => {
     location: "Singapore",
   });
 });
+
+app.get("/help/*", (req,res) => {
+  res.render("404", {
+    title: 'Help Page 404',
+    name: "Kohhx",
+    errorMessage: "Help Page not found!"
+  })
+})
+
+// Create a 404 page (Must be last) ============================================
+app.get("*",(req, res) => {
+  res.render("404", {
+    title: '404',
+    name: "Kohhx",
+    errorMessage: "404, Page not found!"
+  })
+})
 
 // Listen to port
 const PORT = process.env.PORT || 5000;
